@@ -1,0 +1,103 @@
+//Design Code
+module pe_4x2(output reg [1:0]out,output reg valid, input [3:0]in );
+  always@*
+    begin
+      case(in)
+        4'b0000 :      begin
+                        out=2'b00;
+                        valid=1'b0;
+                        end
+        4'b0001 :      begin
+                        out=2'b00;
+                        valid=1'b1;
+                        end
+        4'b0010 :      begin
+                        out=2'b01;
+                        valid=1'b1;
+                        end
+        4'b0011 :      begin
+                        out=2'b01;
+                        valid=1'b1;
+                        end
+        4'b0100 :      begin
+                        out=2'b10;
+                        valid=1'b1;
+                        end
+        4'b0101 :      begin
+                        out=2'b10;
+                        valid=1'b1;
+                        end
+        4'b0110 :      begin
+                        out=2'b10;
+                        valid=1'b1;
+                        end
+        4'b0111 :      begin
+                        out=2'b10;
+                        valid=1'b1;
+                        end
+        4'b1000 :      begin
+                        out=2'b11;
+                        valid=1'b1;
+                        end
+        4'b1001 :      begin
+                        out=2'b11;
+                        valid=1'b1;
+                        end
+        4'b1010 :      begin
+                        out=2'b11;
+                        valid=1'b1;
+                        end
+        4'b1011 :      begin
+                        out=2'b11;
+                        valid=1'b1;
+                        end
+        4'b1100 :      begin
+                        out=2'b11;
+                        valid=1'b1;
+                        end
+        4'b1101 :      begin
+                        out=2'b11;
+                        valid=1'b1;
+                        end
+        4'b1110 :      begin
+                        out=2'b11;
+                        valid=1'b1;
+                        end
+        4'b1111 :      begin
+                        out=2'b11;
+                        valid=1'b1;
+                        end
+        default :     begin
+                       out=2'bxx;
+                       valid=1'bx;
+                        end
+      endcase
+    end
+endmodule
+        
+//Test Bench Code
+module test();
+  wire [1:0]out;
+  wire valid;
+  reg [3:0]in;
+  pe_4x2 dut(out,valid,in);
+  integer i;
+  initial
+    begin
+      for(i=0;i<16;i=i+1)
+        begin
+          in=i;
+          #10;
+        end
+    end
+  initial
+    begin
+      $monitor("in=%b,out=%b,valid=%b",in,out,valid);
+    end
+  initial
+    begin
+      $dumpfile("test.vcd");
+      $dumpvars(1);
+    end
+endmodule
+
